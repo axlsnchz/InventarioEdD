@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inventario</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/styles/styles.css}" href="/styles/styles.css">
+</head>
+<body>
+
+<header>
+    <div class="bar">
+        <a class="brand" href="index.html">Inventario</a>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a class="on" href="productos.html">Productos</a>
+            <a href="formulario.html">Nuevo producto</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section id="v-detalle">
+        <a class="link back" href="productos.html">Volver a productos</a>
+        <div class="detail" id="detalle">
+            <div class="thumb" id="detThumb"></div>
+            <div>
+                <span class="tag" id="detEstado"></span>
+                <h1 id="detNombre"></h1>
+                <p class="muted" id="detSub"></p>
+                <p class="desc" id="detDescripcion" style="margin-top:14px"></p>
+
+                <dl class="facts">
+                    <div>
+                        <dt>Precio</dt>
+                        <dd id="detPrecio"></dd>
+                    </div>
+                    <div>
+                        <dt>Stock actual</dt>
+                        <dd id="detStock"></dd>
+                    </div>
+                    <div>
+                        <dt>Stock mínimo</dt>
+                        <dd id="detMinimo"></dd>
+                    </div>
+                    <div>
+                        <dt>Valor en inventario</dt>
+                        <dd id="detValorTotal"></dd>
+                    </div>
+                    <div>
+                        <dt>Fecha de registro</dt>
+                        <dd id="detFecha"></dd>
+                    </div>
+                </dl>
+
+                <div class="actions">
+                    <a class="btn" id="btnEditar" href="#">Editar</a>
+                    <button class="btn danger" id="btnEliminar" type="button">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<dialog id="dlg">
+    <h3>¿Eliminar este producto?</h3>
+    <p class="muted" id="dlgTxt"></p>
+    <div class="actions">
+        <button class="btn ghost" id="dlgNo" type="button">Cancelar</button>
+        <button class="btn danger" id="dlgSi" type="button">Eliminar</button>
+    </div>
+</dialog>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inventario</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/styles/styles.css}" href="/styles/styles.css">
+</head>
+<body>
+
+<header>
+    <div class="bar">
+        <a class="brand" href="index.html">Inventario</a>
+        <nav>
+            <a class="on" href="index.html">Inicio</a>
+            <a href="productos.html">Productos</a>
+            <a href="formulario.html">Nuevo producto</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section id="v-dashboard">
+        <div class="dash">
+            <div>
+                <h1>Así está tu inventario hoy</h1>
+                <p class="muted lead">Un vistazo a lo que tienes en existencia y a lo que necesita atención.</p>
+                <div class="big">
+                    <div class="panel tint">
+                        <div class="num" id="kValor">$0.00</div>
+                        <p class="muted" style="margin-top:8px">Valor total del inventario</p>
+                    </div>
+                    <div class="stack">
+                        <div class="panel">
+                            <div class="num" id="kTotal">0</div>
+                            <p class="muted" style="margin-top:6px">Productos registrados</p>
+                        </div>
+                        <div class="panel">
+                            <div class="num" id="kBajo">0</div>
+                            <p class="muted" style="margin-top:6px">Con stock bajo o agotados</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="shortcuts">
+                    <a class="btn" href="formulario.html">Agregar producto</a>
+                    <a class="btn ghost" href="productos.html">Ver todos los productos</a>
+                </div>
+            </div>
+
+            <aside class="side">
+                <h2>Necesitan reposición</h2>
+                <ul class="list" id="listBajo">
+                    <!-- Elementos dinámicos -->
+                </ul>
+
+                <h2 style="margin-top:32px">Agregados recientemente</h2>
+                <ul class="list" id="listReciente">
+                    <!-- Elementos dinámicos -->
+                </ul>
+            </aside>
+        </div>
+    </section>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inventario</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/styles/styles.css}" href="/styles/styles.css">
+</head>
+<body>
+
+<header>
+    <div class="bar">
+        <a class="brand" href="index.html">Inventario</a>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="productos.html">Productos</a>
+            <a class="on" href="formulario.html">Nuevo producto</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section id="v-formulario">
+        <div class="formgrid">
+            <div>
+                <h1 id="formTitulo">Nuevo producto</h1>
+                <p class="muted" id="formSub">Completa los datos básicos. Podrás editarlos después.</p>
+
+                <form class="panel" id="form" novalidate>
+                    <div class="row2">
+                        <div class="field" data-f="sku">
+                            <label for="sku">Código (SKU)</label>
+                            <input id="sku" name="codigoSku" type="text">
+                            <div class="err">Escribe un código que no esté repetido.</div>
+                        </div>
+                        <div class="field" data-f="categoria">
+                            <label for="categoria">Categoría</label>
+                            <input id="categoria" name="categoria" type="text" list="cats">
+                            <datalist id="cats">
+                                <!-- Categorías dinámicas -->
+                            </datalist>
+                            <div class="err">Indica una categoría.</div>
+                        </div>
+                    </div>
+
+                    <div class="field" data-f="nombre">
+                        <label for="nombre">Nombre</label>
+                        <input id="nombre" name="nombre" type="text">
+                        <div class="err">El nombre es obligatorio.</div>
+                    </div>
+
+                    <div class="field">
+                        <label for="descripcion">Descripción</label>
+                        <textarea id="descripcion" name="descripcion" rows="3" placeholder="Opcional"></textarea>
+                    </div>
+
+                    <div class="row2">
+                        <div class="field" data-f="precio">
+                            <label for="precio">Precio (MXN)</label>
+                            <input id="precio" name="precio" type="number" step="0.01" min="0">
+                            <div class="err">Escribe un precio de 0 en adelante.</div>
+                        </div>
+                        <div class="field">
+                            <label for="imagen">Imagen (URL)</label>
+                            <input id="imagen" name="imagenUrl" type="url" placeholder="Opcional">
+                        </div>
+                    </div>
+
+                    <div class="row2">
+                        <div class="field" data-f="stock">
+                            <label for="stock">Stock actual</label>
+                            <input id="stock" name="stockActual" type="number" min="0" step="1">
+                            <div class="err">Usa un número entero de 0 en adelante.</div>
+                        </div>
+                        <div class="field" data-f="minimo">
+                            <label for="minimo">Stock mínimo</label>
+                            <input id="minimo" name="stockMinimo" type="number" min="0" step="1">
+                            <small>Avisamos cuando baje de aquí.</small>
+                            <div class="err">Usa un número entero de 0 en adelante.</div>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <button class="btn" type="submit">Guardar producto</button>
+                        <a class="btn ghost" href="productos.html">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+
+            <aside class="preview">
+                <h2>Así se verá</h2>
+                <div class="card">
+                    <div class="thumb" id="pvThumb">?</div>
+                    <h3 id="pvNombre" style="font-size:20px">Nombre del producto</h3>
+                    <p class="muted" id="pvCat" style="margin-bottom:12px">Categoría</p>
+                    <div style="display:flex;justify-content:space-between;align-items:center">
+                        <b id="pvPrecio">$0.00</b>
+                        <span class="tag ok" id="pvEstado">Disponible</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </section>
+</main>
+
+</body>
+</html>

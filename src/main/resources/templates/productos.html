@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inventario</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/styles/styles.css}" href="/styles/styles.css">
+</head>
+<body>
+
+<header>
+    <div class="bar">
+        <a class="brand" href="index.html">Inventario</a>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a class="on" href="productos.html">Productos</a>
+            <a href="formulario.html">Nuevo producto</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section id="v-productos">
+        <div class="prod">
+            <aside class="filters">
+                <h2>Filtrar</h2>
+                <form id="formFiltros">
+                    <div class="field">
+                        <label for="fBuscar">Buscar</label>
+                        <input id="fBuscar" name="buscar" type="search" placeholder="Nombre o código">
+                    </div>
+                    <div class="field">
+                        <label for="fCat">Categoría</label>
+                        <select id="fCat" name="categoria">
+                            <option value="">Todas</option>
+                            <!-- Opciones dinámicas -->
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="fEstado">Estado del stock</label>
+                        <select id="fEstado" name="estado">
+                            <option value="">Todos</option>
+                            <option value="ok">Disponible</option>
+                            <option value="low">Stock bajo</option>
+                            <option value="out">Agotado</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="fOrden">Ordenar por</label>
+                        <select id="fOrden" name="ordenarPor">
+                            <option value="nombre">Nombre</option>
+                            <option value="precio">Precio</option>
+                            <option value="stock">Stock</option>
+                            <option value="fecha">Más recientes</option>
+                        </select>
+                    </div>
+                    <button class="btn ghost" id="fLimpiar" type="reset" style="width:100%">Limpiar filtros</button>
+                </form>
+            </aside>
+
+            <div>
+                <div class="prod-head">
+                    <div>
+                        <h1>Productos</h1>
+                        <p class="muted" id="conteo"></p>
+                    </div>
+                    <a class="btn" href="formulario.html">Agregar producto</a>
+                </div>
+
+                <div class="tablewrap">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Categoría</th>
+                            <th>Precio</th>
+                            <th>Stock</th>
+                            <th>Estado</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbody">
+                        <!-- Filas dinámicas -->
+                        </tbody>
+                    </table>
+                    <div class="empty" id="vacio">No hay productos registrados.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<dialog id="dlg">
+    <h3>¿Eliminar este producto?</h3>
+    <p class="muted" id="dlgTxt"></p>
+    <div class="actions">
+        <button class="btn ghost" id="dlgNo" type="button">Cancelar</button>
+        <button class="btn danger" id="dlgSi" type="button">Eliminar</button>
+    </div>
+</dialog>
+
+</body>
+</html>

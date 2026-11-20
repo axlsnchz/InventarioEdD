@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Inventario</title>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{/styles/styles.css}" href="/styles/styles.css">
+    <link rel="stylesheet" th:href="@{/styles.css}" href="../static/styles.css">
 </head>
 <body>
 
 <header>
     <div class="bar">
-        <a class="brand" href="index.html">Inventario</a>
+        <a class="brand" th:href="@{/}" href="#">Inventario</a>
         <nav>
-            <a class="on" href="index.html">Inicio</a>
-            <a href="productos.html">Productos</a>
-            <a href="formulario.html">Nuevo producto</a>
+            <a class="on" th:href="@{/}" href="#">Inicio</a>
+            <a th:href="@{/productos}" href="#">Productos</a>
+            <a th:href="@{/productos/nuevo}" href="#">Nuevo producto</a>
         </nav>
     </div>
 </header>
@@ -28,35 +28,50 @@
                 <p class="muted lead">Un vistazo a lo que tienes en existencia y a lo que necesita atención.</p>
                 <div class="big">
                     <div class="panel tint">
-                        <div class="num" id="kValor">$0.00</div>
+                        <div class="num" id="kValor"
+                             th:text="'$' + ${#numbers.formatDecimal(valorTotal,1,'COMMA',2,'POINT')}">$0.00</div>
                         <p class="muted" style="margin-top:8px">Valor total del inventario</p>
                     </div>
                     <div class="stack">
                         <div class="panel">
-                            <div class="num" id="kTotal">0</div>
+                            <div class="num" id="kTotal" th:text="${totalProductos}">0</div>
                             <p class="muted" style="margin-top:6px">Productos registrados</p>
                         </div>
                         <div class="panel">
-                            <div class="num" id="kBajo">0</div>
+                            <div class="num" id="kBajo" th:text="${totalBajos}">0</div>
                             <p class="muted" style="margin-top:6px">Con stock bajo o agotados</p>
                         </div>
                     </div>
                 </div>
                 <div class="shortcuts">
-                    <a class="btn" href="formulario.html">Agregar producto</a>
-                    <a class="btn ghost" href="productos.html">Ver todos los productos</a>
+                    <a class="btn" th:href="@{/productos/nuevo}" href="#">Agregar producto</a>
+                    <a class="btn ghost" th:href="@{/productos}" href="#">Ver todos los productos</a>
                 </div>
             </div>
 
             <aside class="side">
                 <h2>Necesitan reposición</h2>
                 <ul class="list" id="listBajo">
-                    <!-- Elementos dinámicos -->
+                    <li th:each="p : ${reposicion}">
+                        <div class="thumb" th:text="${p.inicial}">L</div>
+                        <div class="grow">
+                            <b th:text="${p.nombre}">Producto</b>
+                            <span th:text="${p.stockActual} + ' en stock · mínimo ' + ${p.stockMinimo}">6 en stock</span>
+                        </div>
+                        <a class="link" th:href="@{/productos/{id}(id=${p.id})}" href="#">Ver</a>
+                    </li>
                 </ul>
 
                 <h2 style="margin-top:32px">Agregados recientemente</h2>
                 <ul class="list" id="listReciente">
-                    <!-- Elementos dinámicos -->
+                    <li th:each="p : ${recientes}">
+                        <div class="thumb" th:text="${p.inicial}">M</div>
+                        <div class="grow">
+                            <b th:text="${p.nombre}">Producto</b>
+                            <span th:text="${p.categoria}">Categoría</span>
+                        </div>
+                        <a class="link" th:href="@{/productos/{id}(id=${p.id})}" href="#">Ver</a>
+                    </li>
                 </ul>
             </aside>
         </div>

@@ -71,6 +71,11 @@ public class Producto {
         }
         return "Disponible";
     }
+    public String getClaseEstado() {
+        if (stockActual == null || stockActual == 0) return "out";
+        if (stockActual <= stockMinimo) return "low";
+        return "ok";
+    }
 
     public Double getValorEnInventario() {
         if (precio == null || stockActual == null) return 0.0;

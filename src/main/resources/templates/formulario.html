@@ -26,64 +26,70 @@
                 <h1 id="formTitulo">Nuevo producto</h1>
                 <p class="muted" id="formSub">Completa los datos básicos. Podrás editarlos después.</p>
 
-                <form class="panel" id="form" novalidate>
+                <form class="panel" id="form" th:action="@{/productos}" th:object="${producto}" method="post" novalidate>
                     <div class="row2">
                         <div class="field" data-f="sku">
                             <label for="sku">Código (SKU)</label>
-                            <input id="sku" name="codigoSku" type="text">
-                            <div class="err">Escribe un código que no esté repetido.</div>
+                            <input id="sku" th:field="*{codigoSku}" type="text">
+                            <div class="err" th:if="${#fields.hasErrors('codigoSku')}" th:errors="*{codigoSku}"></div>
                         </div>
                         <div class="field" data-f="categoria">
                             <label for="categoria">Categoría</label>
-                            <input id="categoria" name="categoria" type="text" list="cats">
+                            <input id="categoria" th:field="*{categoria}" type="text" list="cats">
                             <datalist id="cats">
                                 <!-- Categorías dinámicas -->
                             </datalist>
-                            <div class="err">Indica una categoría.</div>
+                            <div class="err" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></div>
                         </div>
                     </div>
 
                     <div class="field" data-f="nombre">
                         <label for="nombre">Nombre</label>
-                        <input id="nombre" name="nombre" type="text">
-                        <div class="err">El nombre es obligatorio.</div>
+                        <input id="nombre" th:field="*{nombre}" type="text">
+                        <div class="err" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+
                     </div>
 
                     <div class="field">
                         <label for="descripcion">Descripción</label>
-                        <textarea id="descripcion" name="descripcion" rows="3" placeholder="Opcional"></textarea>
+                        <textarea id="descripcion" th:field="*{descripcion}" rows="3" placeholder="Opcional"></textarea>
                     </div>
 
                     <div class="row2">
                         <div class="field" data-f="precio">
                             <label for="precio">Precio (MXN)</label>
-                            <input id="precio" name="precio" type="number" step="0.01" min="0">
-                            <div class="err">Escribe un precio de 0 en adelante.</div>
+                            <input id="precio" th:field="*{precio}" type="number" step="0.01" min="0">
+                            <div class="err" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></div>
+
                         </div>
                         <div class="field">
                             <label for="imagen">Imagen (URL)</label>
-                            <input id="imagen" name="imagenUrl" type="url" placeholder="Opcional">
+                            <input id="imagen" th:field="*{imagenUrl}" type="url" placeholder="Opcional">
                         </div>
                     </div>
 
                     <div class="row2">
                         <div class="field" data-f="stock">
                             <label for="stock">Stock actual</label>
-                            <input id="stock" name="stockActual" type="number" min="0" step="1">
-                            <div class="err">Usa un número entero de 0 en adelante.</div>
+                            <input id="stock" th:field="*{stockActual}" type="number" min="0" step="1">
+                            <div class="err" th:if="${#fields.hasErrors('stockActual')}" th:errors="*{stockActual}"></div>
+
                         </div>
                         <div class="field" data-f="minimo">
                             <label for="minimo">Stock mínimo</label>
-                            <input id="minimo" name="stockMinimo" type="number" min="0" step="1">
+                            <input id="minimo" th:field="*{stockMinimo}" type="number" min="0" step="1">
                             <small>Avisamos cuando baje de aquí.</small>
-                            <div class="err">Usa un número entero de 0 en adelante.</div>
+                            <div class="err" th:if="${#fields.hasErrors('stockMinimo')}" th:errors="*{stockMinimo}"></div>
                         </div>
                     </div>
 
+                    <div class="err" th:if="${#fields.hasErrors('stockMinimo')}" th:errors="*{stockMinimo}"></div>
+
                     <div class="actions">
                         <button class="btn" type="submit">Guardar producto</button>
-                        <a class="btn ghost" href="productos.html">Cancelar</a>
+                        <a class="btn ghost" th:href="@{/productos}">Cancelar</a>
                     </div>
+
                 </form>
             </div>
 

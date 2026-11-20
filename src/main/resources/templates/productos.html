@@ -61,7 +61,8 @@
                     <div>
                         <h1>Productos</h1>
                         <p class="muted" id="conteo" th:text="${total} + ' productos'"></p>                    </div>
-                    <a class="btn" href="formulario.html">Agregar producto</a>
+                    <a class="btn" th:href="@{/productos/nuevo}" href="#">Agregar producto</a>
+
                 </div>
 
                 <div class="tablewrap">
@@ -95,7 +96,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <div class="empty" id="vacio">No hay productos registrados.</div>
+                    <div class="empty" th:if="${productos.isEmpty()}">No hay productos registrados.</div>
                 </div>
             </div>
         </div>

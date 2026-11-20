@@ -20,56 +20,27 @@
 </header>
 
 <main>
-    <section id="v-detalle">
-        <a class="link back" href="productos.html">Volver a productos</a>
-        <div class="detail" id="detalle">
-            <div class="thumb" id="detThumb"></div>
-            <div>
-                <span class="tag" id="detEstado"></span>
-                <h1 id="detNombre"></h1>
-                <p class="muted" id="detSub"></p>
-                <p class="desc" id="detDescripcion" style="margin-top:14px"></p>
+    <a class="link back" th:href="@{/productos}">Volver a productos</a>
+    <div class="detail">
+        <div class="thumb" th:text="${p.inicial}"></div>
+        <div>
+            <span class="tag" th:classappend="${p.claseEstado}" th:text="${p.estadoStock}"></span>
+            <h1 th:text="${p.nombre}"></h1>
+            <p class="muted" th:text="${p.categoria} + ' · ' + ${p.codigoSku}"></p>
+            <p class="desc" th:text="${p.descripcion}" style="margin-top:14px"></p>
 
-                <dl class="facts">
-                    <div>
-                        <dt>Precio</dt>
-                        <dd id="detPrecio"></dd>
-                    </div>
-                    <div>
-                        <dt>Stock actual</dt>
-                        <dd id="detStock"></dd>
-                    </div>
-                    <div>
-                        <dt>Stock mínimo</dt>
-                        <dd id="detMinimo"></dd>
-                    </div>
-                    <div>
-                        <dt>Valor en inventario</dt>
-                        <dd id="detValorTotal"></dd>
-                    </div>
-                    <div>
-                        <dt>Fecha de registro</dt>
-                        <dd id="detFecha"></dd>
-                    </div>
-                </dl>
-
-                <div class="actions">
-                    <a class="btn" id="btnEditar" href="#">Editar</a>
-                    <button class="btn danger" id="btnEliminar" type="button">Eliminar</button>
-                </div>
-            </div>
+            <dl class="facts">
+                <div><dt>Precio</dt><dd th:text="'$' + ${#numbers.formatDecimal(p.precio,1,'COMMA',2,'POINT')}"></dd></div>
+                <div><dt>Stock actual</dt><dd th:text="${p.stockActual}"></dd></div>
+                <div><dt>Stock mínimo</dt><dd th:text="${p.stockMinimo}"></dd></div>
+                <div><dt>Valor en inventario</dt><dd th:text="'$' + ${#numbers.formatDecimal(p.valorEnInventario,1,'COMMA',2,'POINT')}"></dd></div>
+                <div><dt>Fecha de registro</dt><dd th:text="${p.fechaRegistro}"></dd></div>
+            </dl>
         </div>
-    </section>
+    </div>
 </main>
 
-<dialog id="dlg">
-    <h3>¿Eliminar este producto?</h3>
-    <p class="muted" id="dlgTxt"></p>
-    <div class="actions">
-        <button class="btn ghost" id="dlgNo" type="button">Cancelar</button>
-        <button class="btn danger" id="dlgSi" type="button">Eliminar</button>
-    </div>
-</dialog>
+
 
 </body>
 </html>
